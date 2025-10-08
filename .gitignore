@@ -1,0 +1,55 @@
+# --- SO / Explorador ---
+.DS_Store
+Thumbs.db
+
+# --- Visual Studio / IDEs ---
+.vs/
+.vscode/
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+*.VC.db
+*.VC.VC.opendb
+
+# Rider / ReSharper
+.idea/
+_ReSharper*/
+*.DotSettings.user
+
+# --- Resultados de build ---
+bin/
+obj/
+[Bb]uild/
+out/
+x64/
+x86/
+[Aa][Rr][Mm]/
+[Aa][Rr][Mm]64/
+
+# --- Logs / cachés ---
+*.log
+*.tlog
+*.cache
+*.pdb
+*.mdb
+*.tmp
+*.swp
+
+# --- NuGet ---
+*.nupkg
+*.snupkg
+packages/
+**/packages/*
+!**/packages/build/
+.nuget/packages/
+
+# --- Publicaciones / perfiles ---
+*.pubxml.user
+*.publishsettings
+
+# --- Pruebas / cobertura ---
+TestResults/
+*.trx
+*.coverage
+*.coveragexml
