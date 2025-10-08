@@ -8,6 +8,7 @@ using SixLabors.ImageSharp;
 using SixLabors.ImageSharp.Formats.Webp;
 using SixLabors.ImageSharp.PixelFormats;
 using SixLabors.ImageSharp.Processing;
+using ImageSharpResizeMode = SixLabors.ImageSharp.Processing.ResizeMode;
 using WinForms = System.Windows.Forms;
 
 namespace ImageOptimizerApp;
@@ -129,7 +130,7 @@ public partial class MainWindow : Window
                 {
                     context.Resize(new ResizeOptions
                     {
-                        Mode = ResizeMode.Max,
+                        Mode = ImageSharpResizeMode.Max,
                         Size = new SixLabors.ImageSharp.Size(width, height)
                     });
                 });
@@ -140,7 +141,7 @@ public partial class MainWindow : Window
                 var encoder = new WebpEncoder
                 {
                     Quality = variant.Quality,
-                    FileFormat = WebpFileFormatType.Auto
+                    FileFormat = WebpFileFormatType.Lossy
                 };
 
                 await clone.SaveAsync(outputPath, encoder);
