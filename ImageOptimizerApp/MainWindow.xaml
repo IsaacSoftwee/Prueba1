@@ -6,6 +6,7 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
 
@@ -23,7 +24,44 @@
             <Button x:Name="StartButton" Content="Comenzar conversión" Padding="12 6" Width="180" Click="StartButton_Click" />
         </StackPanel>
 
-        <Border Grid.Row="2" x:Name="LoaderPanel" BorderBrush="#FFCCCCCC" BorderThickness="1" CornerRadius="8" Padding="16" Visibility="Collapsed">
+        <GroupBox Grid.Row="2" Header="Configuración de tamaños y calidad" Margin="0 0 0 16">
+            <StackPanel Margin="12 8 12 12" Spacing="12">
+                <TextBlock Text="Las imágenes se redimensionarán manteniendo la proporción original. Configura el ancho máximo para la imagen grande y los porcentajes relativos para las variantes mediana y chica." TextWrapping="Wrap" />
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="120" />
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="120" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+
+                    <TextBlock Grid.Row="0" Grid.Column="0" Text="Grande (ancho en px):" VerticalAlignment="Center" Margin="0 0 12 0" />
+                    <TextBox x:Name="LargeWidthTextBox" Grid.Row="0" Grid.Column="1" MinWidth="100" TextChanged="SizeTextBox_TextChanged" />
+                    <TextBlock Grid.Row="0" Grid.Column="3" Text="Calidad (0-100):" VerticalAlignment="Center" Margin="12 0" />
+                    <TextBox x:Name="LargeQualityTextBox" Grid.Row="0" Grid.Column="4" MinWidth="80" />
+
+                    <TextBlock Grid.Row="1" Grid.Column="0" Text="Mediana (% del ancho grande):" VerticalAlignment="Center" Margin="0 0 12 0" />
+                    <TextBox x:Name="MediumPercentageTextBox" Grid.Row="1" Grid.Column="1" MinWidth="100" TextChanged="SizeTextBox_TextChanged" />
+                    <TextBlock x:Name="MediumWidthPreviewText" Grid.Row="1" Grid.Column="2" Text="" VerticalAlignment="Center" Margin="12 0" />
+                    <TextBlock Grid.Row="1" Grid.Column="3" Text="Calidad (0-100):" VerticalAlignment="Center" Margin="12 0" />
+                    <TextBox x:Name="MediumQualityTextBox" Grid.Row="1" Grid.Column="4" MinWidth="80" />
+
+                    <TextBlock Grid.Row="2" Grid.Column="0" Text="Chica (% del ancho grande):" VerticalAlignment="Center" Margin="0 0 12 0" />
+                    <TextBox x:Name="SmallPercentageTextBox" Grid.Row="2" Grid.Column="1" MinWidth="100" TextChanged="SizeTextBox_TextChanged" />
+                    <TextBlock x:Name="SmallWidthPreviewText" Grid.Row="2" Grid.Column="2" Text="" VerticalAlignment="Center" Margin="12 0" />
+                    <TextBlock Grid.Row="2" Grid.Column="3" Text="Calidad (0-100):" VerticalAlignment="Center" Margin="12 0" />
+                    <TextBox x:Name="SmallQualityTextBox" Grid.Row="2" Grid.Column="4" MinWidth="80" />
+                </Grid>
+            </StackPanel>
+        </GroupBox>
+
+        <Border Grid.Row="3" x:Name="LoaderPanel" BorderBrush="#FFCCCCCC" BorderThickness="1" CornerRadius="8" Padding="16" Visibility="Collapsed">
             <StackPanel>
                 <TextBlock x:Name="LoaderText" Text="Procesando imágenes..." FontWeight="SemiBold" HorizontalAlignment="Center" />
                 <ProgressBar x:Name="ConversionProgressBar" Margin="0 16 0 8" Height="18" Minimum="0" Maximum="100" />

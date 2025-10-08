@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
@@ -15,23 +16,24 @@ namespace ImageOptimizerApp;
 
 public partial class MainWindow : Window
 {
-    private readonly IReadOnlyList<ImageVariant> _variants = new List<ImageVariant>
-    {
-        new("chico", 400, 75),
-        new("mediano", 800, 80),
-        new("grande", 1200, 85)
-    };
-
     private readonly HashSet<string> _supportedExtensions = new(StringComparer.OrdinalIgnoreCase)
     {
         ".jpg", ".jpeg", ".png", ".bmp", ".gif", ".tif", ".tiff"
     };
+
+    private const int DefaultLargeWidth = 600;
+    private const double DefaultMediumPercentage = 70;
+    private const double DefaultSmallPercentage = 45;
+    private const int DefaultLargeQuality = 85;
+    private const int DefaultMediumQuality = 80;
+    private const int DefaultSmallQuality = 75;
 
     private string? _selectedFolder;
 
     public MainWindow()
     {
         InitializeComponent();
+        InitializeConfigurationDefaults();
     }
 
     private void BrowseButton_Click(object sender, RoutedEventArgs e)
@@ -72,7 +74,14 @@ public partial class MainWindow : Window
 
         ToggleUi(isProcessing: true);
 
-        var totalSteps = imageFiles.Count * _variants.Count;
+        if (!TryReadConfiguration(out var variants, out var validationError))
+        {
+            MessageBox.Show(validationError, "Configuración no válida", MessageBoxButton.OK, MessageBoxImage.Warning);
+            ToggleUi(isProcessing: false);
+            return;
+        }
+
+        var totalSteps = imageFiles.Count * variants.Count;
         ConversionProgressBar.Minimum = 0;
         ConversionProgressBar.Maximum = totalSteps;
         ConversionProgressBar.Value = 0;
@@ -92,7 +101,7 @@ public partial class MainWindow : Window
 
         try
         {
-            await Task.Run(() => ProcessImagesAsync(_selectedFolder!, imageFiles, progress));
+            await Task.Run(() => ProcessImagesAsync(_selectedFolder!, imageFiles, variants, progress));
             ConversionProgressBar.Value = ConversionProgressBar.Maximum;
             PercentageText.Text = "100%";
             StatusText.Text = "Conversión finalizada. Encontrarás los archivos en la carpeta 'resultado'.";
@@ -108,13 +117,13 @@ public partial class MainWindow : Window
         }
     }
 
-    private async Task ProcessImagesAsync(string baseFolder, IReadOnlyList<string> imageFiles, IProgress<ConversionProgress> progress)
+    private async Task ProcessImagesAsync(string baseFolder, IReadOnlyList<string> imageFiles, IReadOnlyList<ImageVariant> variants, IProgress<ConversionProgress> progress)
     {
         var resultFolder = Path.Combine(baseFolder, "resultado");
         Directory.CreateDirectory(resultFolder);
 
         var step = 0;
-        var totalSteps = imageFiles.Count * _variants.Count;
+        var totalSteps = imageFiles.Count * variants.Count;
 
         foreach (var file in imageFiles)
         {
@@ -122,7 +131,7 @@ public partial class MainWindow : Window
 
             using Image<Rgba32> image = await Image.LoadAsync<Rgba32>(file);
 
-            foreach (var variant in _variants)
+            foreach (var variant in variants)
             {
                 var (width, height) = CalculateTargetSize(image, variant.TargetWidth);
 
@@ -183,6 +192,138 @@ public partial class MainWindow : Window
 
         BrowseButton.IsEnabled = !isProcessing;
         StartButton.IsEnabled = !isProcessing;
+    }
+
+    private void InitializeConfigurationDefaults()
+    {
+        LargeWidthTextBox.Text = DefaultLargeWidth.ToString(CultureInfo.InvariantCulture);
+        MediumPercentageTextBox.Text = DefaultMediumPercentage.ToString(CultureInfo.InvariantCulture);
+        SmallPercentageTextBox.Text = DefaultSmallPercentage.ToString(CultureInfo.InvariantCulture);
+
+        LargeQualityTextBox.Text = DefaultLargeQuality.ToString(CultureInfo.InvariantCulture);
+        MediumQualityTextBox.Text = DefaultMediumQuality.ToString(CultureInfo.InvariantCulture);
+        SmallQualityTextBox.Text = DefaultSmallQuality.ToString(CultureInfo.InvariantCulture);
+
+        UpdateDerivedPreviews();
+    }
+
+    private void SizeTextBox_TextChanged(object sender, System.Windows.Controls.TextChangedEventArgs e)
+    {
+        UpdateDerivedPreviews();
+    }
+
+    private void UpdateDerivedPreviews()
+    {
+        if (!TryParsePositiveInt(LargeWidthTextBox.Text, out var largeWidth))
+        {
+            MediumWidthPreviewText.Text = string.Empty;
+            SmallWidthPreviewText.Text = string.Empty;
+            return;
+        }
+
+        MediumWidthPreviewText.Text = TryParsePercentage(MediumPercentageTextBox.Text, out var mediumPercentage)
+            ? $"≈ {Math.Max(1, (int)Math.Round(largeWidth * mediumPercentage / 100d))} px"
+            : string.Empty;
+
+        SmallWidthPreviewText.Text = TryParsePercentage(SmallPercentageTextBox.Text, out var smallPercentage)
+            ? $"≈ {Math.Max(1, (int)Math.Round(largeWidth * smallPercentage / 100d))} px"
+            : string.Empty;
+    }
+
+    private bool TryReadConfiguration(out List<ImageVariant> variants, out string? errorMessage)
+    {
+        variants = new List<ImageVariant>();
+        errorMessage = null;
+
+        if (!TryParsePositiveInt(LargeWidthTextBox.Text, out var largeWidth))
+        {
+            errorMessage = "El ancho de la imagen grande debe ser un número entero positivo.";
+            return false;
+        }
+
+        if (!TryParsePercentage(MediumPercentageTextBox.Text, out var mediumPercentage))
+        {
+            errorMessage = "El porcentaje de la imagen mediana debe ser un número positivo.";
+            return false;
+        }
+
+        if (!TryParsePercentage(SmallPercentageTextBox.Text, out var smallPercentage))
+        {
+            errorMessage = "El porcentaje de la imagen chica debe ser un número positivo.";
+            return false;
+        }
+
+        if (!TryParseQuality(LargeQualityTextBox.Text, out var largeQuality))
+        {
+            errorMessage = "La calidad de la imagen grande debe estar entre 0 y 100.";
+            return false;
+        }
+
+        if (!TryParseQuality(MediumQualityTextBox.Text, out var mediumQuality))
+        {
+            errorMessage = "La calidad de la imagen mediana debe estar entre 0 y 100.";
+            return false;
+        }
+
+        if (!TryParseQuality(SmallQualityTextBox.Text, out var smallQuality))
+        {
+            errorMessage = "La calidad de la imagen chica debe estar entre 0 y 100.";
+            return false;
+        }
+
+        var mediumWidth = Math.Max(1, (int)Math.Round(largeWidth * mediumPercentage / 100d));
+        var smallWidth = Math.Max(1, (int)Math.Round(largeWidth * smallPercentage / 100d));
+
+        variants.Add(new ImageVariant("chico", smallWidth, smallQuality));
+        variants.Add(new ImageVariant("mediano", mediumWidth, mediumQuality));
+        variants.Add(new ImageVariant("grande", largeWidth, largeQuality));
+
+        return true;
+    }
+
+    private static bool TryParsePositiveInt(string? text, out int value)
+    {
+        if (int.TryParse(text, NumberStyles.Integer, CultureInfo.InvariantCulture, out value) && value > 0)
+        {
+            return true;
+        }
+
+        value = 0;
+        return false;
+    }
+
+    private static bool TryParsePercentage(string? text, out double value)
+    {
+        if (TryParseDoubleAllowingComma(text, out value) && value > 0)
+        {
+            return true;
+        }
+
+        value = 0;
+        return false;
+    }
+
+    private static bool TryParseQuality(string? text, out int value)
+    {
+        if (int.TryParse(text, NumberStyles.Integer, CultureInfo.InvariantCulture, out value) && value is >= 0 and <= 100)
+        {
+            return true;
+        }
+
+        value = 0;
+        return false;
+    }
+
+    private static bool TryParseDoubleAllowingComma(string? text, out double value)
+    {
+        if (string.IsNullOrWhiteSpace(text))
+        {
+            value = 0;
+            return false;
+        }
+
+        var normalized = text.Replace(',', '.');
+        return double.TryParse(normalized, NumberStyles.Float, CultureInfo.InvariantCulture, out value);
     }
 
     private record ImageVariant(string Name, int TargetWidth, int Quality);
