@@ -25,8 +25,8 @@
         </StackPanel>
 
         <GroupBox Grid.Row="2" Header="Configuración de tamaños y calidad" Margin="0 0 0 16">
-            <StackPanel Margin="12 8 12 12" Spacing="12">
-                <TextBlock Text="Las imágenes se redimensionarán manteniendo la proporción original. Configura el ancho máximo para la imagen grande y los porcentajes relativos para las variantes mediana y chica." TextWrapping="Wrap" />
+            <StackPanel Margin="12 8 12 12">
+                <TextBlock Text="Las imágenes se redimensionarán manteniendo la proporción original. Configura el ancho máximo para la imagen grande y los porcentajes relativos para las variantes mediana y chica." TextWrapping="Wrap" Margin="0 0 0 12" />
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="Auto" />
