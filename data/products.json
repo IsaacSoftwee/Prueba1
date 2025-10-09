@@ -1,0 +1,230 @@
+[
+  {
+    "code": "BRC-001",
+    "name": "Ocean Gleam Bracelet",
+    "description": "A luminous bracelet featuring cascading silver waves and aquamarine crystals that shimmer with every movement.",
+    "category": "Bracelets",
+    "price": 48.00,
+    "images": {
+      "small": "Img/resultado/Bracelets1_small.webp",
+      "medium": "Img/resultado/Bracelets1_medium.webp",
+      "large": "Img/resultado/Bracelets1_large.webp"
+    }
+  },
+  {
+    "code": "BRC-002",
+    "name": "Midnight Garden Bracelet",
+    "description": "Dark floral charms and polished stones intertwine to create a bracelet that evokes a moonlit botanical garden.",
+    "category": "Bracelets",
+    "price": 45.50,
+    "images": {
+      "small": "Img/resultado/Bracelets2_small.webp",
+      "medium": "Img/resultado/Bracelets2_medium.webp",
+      "large": "Img/resultado/Bracelets2_large.webp"
+    }
+  },
+  {
+    "code": "BRC-003",
+    "name": "Rose Dawn Bracelet",
+    "description": "Warm blush tones and delicate metallic beads capture the soft glow of sunrise in a refined bracelet design.",
+    "category": "Bracelets",
+    "price": 42.00,
+    "images": {
+      "small": "Img/resultado/Bracelets3_small.webp",
+      "medium": "Img/resultado/Bracelets3_medium.webp",
+      "large": "Img/resultado/Bracelets3_large.webp"
+    }
+  },
+  {
+    "code": "BRC-004",
+    "name": "Crystal Meadow Bracelet",
+    "description": "Faceted stones in fresh green hues rest among silver petals for a bracelet inspired by a sparkling meadow.",
+    "category": "Bracelets",
+    "price": 47.25,
+    "images": {
+      "small": "Img/resultado/Bracelets4_small.webp",
+      "medium": "Img/resultado/Bracelets4_medium.webp",
+      "large": "Img/resultado/Bracelets4_large.webp"
+    }
+  },
+  {
+    "code": "BRC-005",
+    "name": "Gilded Twilight Bracelet",
+    "description": "Golden links and twilight stones blend together, offering a bracelet that balances elegance with everyday wear.",
+    "category": "Bracelets",
+    "price": 51.00,
+    "images": {
+      "small": "Img/resultado/Bracelets5_small.webp",
+      "medium": "Img/resultado/Bracelets5_medium.webp",
+      "large": "Img/resultado/Bracelets5_large.webp"
+    }
+  },
+  {
+    "code": "EAR-001",
+    "name": "Starlit Cascade Earrings",
+    "description": "Tiered crystal drops fall like stars across the night sky, bringing graceful movement to these earrings.",
+    "category": "Earrings",
+    "price": 39.00,
+    "images": {
+      "small": "Img/resultado/Earrings1_small.webp",
+      "medium": "Img/resultado/Earrings1_medium.webp",
+      "large": "Img/resultado/Earrings1_large.webp"
+    }
+  },
+  {
+    "code": "EAR-002",
+    "name": "Celestial Hoop Earrings",
+    "description": "Orbit-inspired hoops adorned with shimmering stones add a cosmic flair to any evening ensemble.",
+    "category": "Earrings",
+    "price": 36.75,
+    "images": {
+      "small": "Img/resultado/Earrings2_small.webp",
+      "medium": "Img/resultado/Earrings2_medium.webp",
+      "large": "Img/resultado/Earrings2_large.webp"
+    }
+  },
+  {
+    "code": "EAR-003",
+    "name": "Blossom Whisper Earrings",
+    "description": "Soft pastel petals crafted in lightweight metal make these earrings a delicate statement piece.",
+    "category": "Earrings",
+    "price": 34.50,
+    "images": {
+      "small": "Img/resultado/Earrings3_small.webp",
+      "medium": "Img/resultado/Earrings3_medium.webp",
+      "large": "Img/resultado/Earrings3_large.webp"
+    }
+  },
+  {
+    "code": "EAR-004",
+    "name": "Aurora Fringe Earrings",
+    "description": "Iridescent fringes swing effortlessly, reflecting hues of dawn for a vibrant ear-catching accessory.",
+    "category": "Earrings",
+    "price": 37.20,
+    "images": {
+      "small": "Img/resultado/Earrings4_small.webp",
+      "medium": "Img/resultado/Earrings4_medium.webp",
+      "large": "Img/resultado/Earrings4_large.webp"
+    }
+  },
+  {
+    "code": "EAR-005",
+    "name": "Velvet Night Earrings",
+    "description": "Deep jewel-toned stones and sleek metallic lines combine for an elegant pair suited to formal evenings.",
+    "category": "Earrings",
+    "price": 38.40,
+    "images": {
+      "small": "Img/resultado/Earrings5_small.webp",
+      "medium": "Img/resultado/Earrings5_medium.webp",
+      "large": "Img/resultado/Earrings5_large.webp"
+    }
+  },
+  {
+    "code": "NCK-001",
+    "name": "Moonriver Necklace",
+    "description": "A flowing silver chain adorned with luminous stones captures the gentle movement of moonlit water.",
+    "category": "Necklaces",
+    "price": 59.90,
+    "images": {
+      "small": "Img/resultado/Necklaces1_small.webp",
+      "medium": "Img/resultado/Necklaces1_medium.webp",
+      "large": "Img/resultado/Necklaces1_large.webp"
+    }
+  },
+  {
+    "code": "NCK-002",
+    "name": "Auric Bloom Necklace",
+    "description": "Golden floral motifs bloom along the chain, bringing radiant warmth to this necklace design.",
+    "category": "Necklaces",
+    "price": 64.50,
+    "images": {
+      "small": "Img/resultado/Necklaces2_small.webp",
+      "medium": "Img/resultado/Necklaces2_medium.webp",
+      "large": "Img/resultado/Necklaces2_large.webp"
+    }
+  },
+  {
+    "code": "NCK-003",
+    "name": "Pearl Horizon Necklace",
+    "description": "Graduated pearls are paired with sleek metallic accents to create a necklace that echoes a serene horizon.",
+    "category": "Necklaces",
+    "price": 72.00,
+    "images": {
+      "small": "Img/resultado/Necklaces3_small.webp",
+      "medium": "Img/resultado/Necklaces3_medium.webp",
+      "large": "Img/resultado/Necklaces3_large.webp"
+    }
+  },
+  {
+    "code": "NCK-004",
+    "name": "Twilight Garland Necklace",
+    "description": "Dusky gemstones nestle among winding metallic vines for a necklace inspired by twilight gardens.",
+    "category": "Necklaces",
+    "price": 68.25,
+    "images": {
+      "small": "Img/resultado/Necklaces4_small.webp",
+      "medium": "Img/resultado/Necklaces4_medium.webp",
+      "large": "Img/resultado/Necklaces4_large.webp"
+    }
+  },
+  {
+    "code": "NCK-005",
+    "name": "Crystal Veil Necklace",
+    "description": "A cascade of translucent crystals forms a luminous veil that drapes gracefully across the neckline.",
+    "category": "Necklaces",
+    "price": 74.80,
+    "images": {
+      "small": "Img/resultado/Necklaces5_small.webp",
+      "medium": "Img/resultado/Necklaces5_medium.webp",
+      "large": "Img/resultado/Necklaces5_large.webp"
+    }
+  },
+  {
+    "code": "NCK-006",
+    "name": "Sunflare Necklace",
+    "description": "Radiant amber stones burst from the center of this necklace, echoing the warmth of a summer sun.",
+    "category": "Necklaces",
+    "price": 63.40,
+    "images": {
+      "small": "Img/resultado/Necklaces6_small.webp",
+      "medium": "Img/resultado/Necklaces6_medium.webp",
+      "large": "Img/resultado/Necklaces6_large.webp"
+    }
+  },
+  {
+    "code": "NCK-007",
+    "name": "Frosted Laurel Necklace",
+    "description": "Silvered leaves edged with icy crystals wrap gently around the collar for an ethereal finish.",
+    "category": "Necklaces",
+    "price": 70.60,
+    "images": {
+      "small": "Img/resultado/Necklaces7_small.webp",
+      "medium": "Img/resultado/Necklaces7_medium.webp",
+      "large": "Img/resultado/Necklaces7_large.webp"
+    }
+  },
+  {
+    "code": "TRA-001",
+    "name": "Starfall Tiara",
+    "description": "Clusters of radiant crystals arc across the tiara, mimicking a shower of shooting stars.",
+    "category": "Tiaras",
+    "price": 89.00,
+    "images": {
+      "small": "Img/resultado/Tiaras1_small.webp",
+      "medium": "Img/resultado/Tiaras1_medium.webp",
+      "large": "Img/resultado/Tiaras1_large.webp"
+    }
+  },
+  {
+    "code": "TRA-002",
+    "name": "Moonlit Petal Tiara",
+    "description": "Gentle petal silhouettes and moonlit crystals crown the wearer with romantic sparkle.",
+    "category": "Tiaras",
+    "price": 94.50,
+    "images": {
+      "small": "Img/resultado/Tiaras2_small.webp",
+      "medium": "Img/resultado/Tiaras2_medium.webp",
+      "large": "Img/resultado/Tiaras2_large.webp"
+    }
+  }
+]
