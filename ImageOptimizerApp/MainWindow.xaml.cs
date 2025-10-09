@@ -274,9 +274,9 @@ public partial class MainWindow : Window
         var mediumWidth = Math.Max(1, (int)Math.Round(largeWidth * mediumPercentage / 100d));
         var smallWidth = Math.Max(1, (int)Math.Round(largeWidth * smallPercentage / 100d));
 
-        variants.Add(new ImageVariant("chico", smallWidth, smallQuality));
-        variants.Add(new ImageVariant("mediano", mediumWidth, mediumQuality));
-        variants.Add(new ImageVariant("grande", largeWidth, largeQuality));
+        variants.Add(new ImageVariant("small", smallWidth, smallQuality));
+        variants.Add(new ImageVariant("medium", mediumWidth, mediumQuality));
+        variants.Add(new ImageVariant("large", largeWidth, largeQuality));
 
         return true;
     }
